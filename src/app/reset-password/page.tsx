@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Box, Typography } from "@mui/material";
 import { AUTH_TYPE, ERROR, ROUTE } from "@/constants";
 import { doPasswordReset } from "@/services/auth";
-import ResetForm from "@/components/auth/reset/ResetForm";
+import ResetForm from "@/components/reset/ResetForm";
 import CustomAuthError from "@/components/auth/CustomAuthError";
 
 export default function Reset() {
