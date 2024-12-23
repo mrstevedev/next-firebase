@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
     const token = request.cookies.get("token")?.value;
 
-    // Protect home page
+    // Protect all routes except login and register
     if (!token && pathname !== ROUTE.LOGIN && !token && pathname !== ROUTE.REGISTER)
         return NextResponse.redirect(new URL(ROUTE.LOGIN, request.url));
 
@@ -13,10 +13,8 @@ export async function middleware(request: NextRequest) {
     if ((token && pathname === ROUTE.LOGIN) || (token && pathname === ROUTE.REGISTER))
         return NextResponse.redirect(new URL(ROUTE.HOME, request.url));
 
-    console.log("TOKEN:", token, "PATHNAME:", pathname);
-
     return NextResponse.next();
 }
 export const config = {
-    matcher: ["/", "/home", "/login", "/register"]
+    matcher: ["/", "/home", "/login", "/register", "/upload"]
 };
