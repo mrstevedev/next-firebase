@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import Header from "@/components/header/Header";
 import AuthProvider from "@/context/authContext";
+import NextQueryClientProvider from "@/providers/NextQueryClientProvider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,12 +29,14 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                <AppRouterCacheProvider>
-                    <AuthProvider>
-                        <Header />
-                        {children}
-                    </AuthProvider>
-                </AppRouterCacheProvider>
+                <NextQueryClientProvider>
+                    <AppRouterCacheProvider>
+                        <AuthProvider>
+                            <Header />
+                            {children}
+                        </AuthProvider>
+                    </AppRouterCacheProvider>
+                </NextQueryClientProvider>
             </body>
         </html>
     );
